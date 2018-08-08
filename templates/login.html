@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .tcont{
+            background:{{color}};
+            min-height:5em;
+            color: black;
+            padding:10px;
+        }
+        .error{
+            color: black;
+        }
+        .success{
+            color: black;
+        }
+        .red{
+            color: red;
+            font-size: 22px;
+        }
+        .navbar{
+        }
+    </style>
+    <title>Validate the world</title>
+  </head>
+  <body>
+<!--Registration container  -->
+<div class = "container">
+        <div class="pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+<!-- this is inner nav -->
+                  <div class="bg-dark p-4">
+<!-- REGISTRATION FORM STARTS HERE -->
+<div class = "container tcont">
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+          <ul>
+            {%- for msg in errors %}
+            <li class= "text-muted">{{ msg }}</li>
+            {% endfor -%}
+          </ul>
+        {% endif %}
+        {% endwith %}
+</div>
+<!-- main form -->
+<div class = "container">
+    <form action="validate" method = "POST">
+<!-- start with names -->
+        <div class="form-row">
+            <div class="col">
+                <input type="text" name ="first_name" minlength=2 class="form-control" placeholder="First Name" value ="{{session['first_name']}}">
+            </div>
+            <div class="col">
+                <input type="text" name = "last_name" minlength=2  class="form-control" placeholder="Last Name" value = "{{session['first_name']}}">
+            </div>
+        </div><label id="spacing" class="form-text text-muted"></label>
+<!-- email -->
+        <div class="form-group emailbox">
+            <small class="form-text text-muted">This will be your login</small>
+            <input type="text" class="form-control" placeholder="Email"value ="{{session['first_name']}}" minlength=5 name = "email" maxlength="254">
+        </div>
+<!-- pwd -->
+        <div class="form-group">
+            <small class="form-text text-muted">Password should be 12+ characters and Alpha Numeric</small>
+            <input type="password" class="form-control" minlength=12  placeholder="Password" name = "password">
+        </div>
+<!-- pwd conf -->
+        <div class="form-group">
+            <small class="form-text text-muted"></small>
+            <input type="password" class="form-control" minlength=12  placeholder="Confirm Password" name = "confirm_password">
+        </div>
+<!-- submit -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+        </div>
+<!-- REGISTRATION FORM ENDS HERE. -->
+            </div>
+            </div>
+<!--this is outer nav  -->
+            <nav class="navbar btn-primary">
+                <button class="navbar-toggler btn-primary btn-block" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    Register!
+                </button>
+            </nav>
+            </div>
+</div>
+
+<!-- START LOGIN PAGE -->
+      <div class = "container">
+        <form action="login" method = "POST">
+            <div class="form-group">
+                <small class="form-text {{clr1}}">{{emaildis}}</small>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name = "email" maxlength="254" value = "{{session['email']}}">
+        <br>
+                <small class="form-text {{clr2}}">{{pwd}}</small>
+        <input name ="pwd" type="password" class="form-control" placeholder="Password required" title="Must contain at least 12 characters ">
+            </div>
+            <button type="submit" class="btn btn-primary">Log in</button>
+        </form>       
+<!-- reset -->
+> Total fails {{session['fail']}}
+<form action="/reset" method="post">
+    <button type="submit" class="btn btn-danger">Reset Session</button>
+</form><br>            
+    </div>
+
+<br><br><br> 
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

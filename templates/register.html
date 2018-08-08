@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .tcont{
+            background:{{color}};
+            min-height:5em;
+            color: black;
+            padding:10px;
+        }
+        .error{
+            color: lightgrey;
+        }
+        .success{
+            color: black;
+        }
+        .emailbox{
+            margin-bottom: 10px;
+        }
+    </style>
+    <title>Validate the world</title>
+  </head>
+  <body>
+      <div class = "container tcont">
+            <h1>THIS IS THE REGISTRATION PAGE/MODULE</h1>
+        <!--  color container -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for category, message in messages %}
+                <li class={{category}}>
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+    </div>
+<!-- gaaaaaaaaarbage -->
+  
+<div class = "container tcont">
+        Flashed Messages: {{get_flashed_messages()}}
+        <br>*****************************<br>
+        > Session{{session}}
+        > Color {{clr1}} 
+        <br>
+        > Total fails {{session['fail']}}
+        <form action="/reset" method="post">
+            <button type="submit" class="btn btn-danger">Reset Session</button>
+        </form>
+</div>
+
+<!-- main form -->
+<div class = "container">
+<form action="validate" method = "POST">
+<!-- start with names -->
+    <div class="form-row">
+        <div class="col">
+            <input type="text" name ="first_name" class="form-control" placeholder="First name">
+        </div>
+        <div class="col">
+            <input type="text" name = "last_name" class="form-control" placeholder="Last Name">
+        </div>
+    </div><label id="spacing" class="form-text text-muted"></label>
+<!-- email -->
+    <div class="form-group emailbox">
+        <small class="form-text text-muted">This will be your login</small>
+        <input type="text" class="form-control" placeholder="Enter email" name = "email" maxlength="254">
+    </div>
+<!-- pwd -->
+    <div class="form-group">
+        <small class="form-text text-muted">Password should be 12+ characters and Alpha Numeric</small>
+        <input type="password" class="form-control" placeholder="Password" name = "password">
+    </div>
+<!-- pwd conf -->
+    <div class="form-group">
+        <small class="form-text text-muted"></small>
+        <input type="password" class="form-control" placeholder="Confirm Password" name = "confirm_password">
+    </div>
+<!-- submit -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    </div>
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

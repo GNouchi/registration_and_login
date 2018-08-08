@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <!-- Required meta tags -->
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                <style>
+                    .tcont{
+                        background:{{color}};
+                        min-height:5em;
+                        color: white;
+                        padding:10px;
+                    }
+                    .error{
+                        color: lightgrey;
+                    }
+                    .success{
+                        color: black;
+                    }
+                    body{
+                        background-image: url("https://i.kym-cdn.com/entries/icons/facebook/000/013/564/doge.jpg");
+                    }
+                </style>
+                <title>Validate the world</title>
+              </head>
+<body>
+    <div class="container" >
+        <h1>Much Successful!</h1>
+        <h4>Welcome,  {{session['first_name']}}</h4>
+<!--  to show if any error messages persist incorrectly -->
+{% with success = get_flashed_messages(category_filter=["success"]) %}
+{% if success %}
+<p>key is{{success}}</p>
+   {% for msg in success %}   
+    <h3>{{ success[0] }}</h3>
+    {% endfor -%}
+  </ul>
+{% endif %}
+{% endwith %}
+<!-- start actual data -->
+        {% for x in userdata:%}
+        <P>******************userdata******************</P>
+         <li>This should NOT PERSIST ANYTHING{{x}}</li><br>
+        {% endfor %}
+<p>*********************ALL PERSISTED RESULTS BELOW********************************</p>
+        {{message}}
+        {{session}}
+        {{userdata}}
+        {{result}}
+        
+        <form action="/logout" method="post">
+            <button type="submit" class="btn btn-success">Logout</button>
+        </form>
+
+    </div>
+
+
+
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
